@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Defining routes and the handling functions """
 
 from flask import make_response
