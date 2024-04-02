@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Initialize a flask application in the file and run"""
+"""Initialize a flask application in the file and run
+The app is documented mehn! Whaaaaaaat!
+
+"""
 
 from flask import Flask
 from models import storage
