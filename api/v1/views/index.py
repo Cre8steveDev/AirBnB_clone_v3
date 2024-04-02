@@ -1,19 +1,46 @@
 #!/usr/bin/python3
 """
-Defining routes and the handling functions 
-This one this one just checking 
+index.py file
 """
 
-from flask import make_response, jsonify
+from flask import jsonify
 from api.v1.views import app_views
 
+from models import storage
 
-@app_views.route("/status", strict_slashes=False)
+
+@app_views.route("/status", methods=['GET'], strict_slashes=False)
 def status():
-    """Method that handles requests to the /status route under api/v1"""
-    response_data = {"status": "OK"}
-    response_data = jsonify(response_data)
-    
-    response_data.status_code = 200
-    
-    return response_data
+    """
+    status route
+    :return: response with json
+    """
+    response_data = {
+        "status": "OK"
+    }
+
+    resp = jsonify(response_data)
+    resp.status_code = 200
+
+    return resp
+
+
+@app_views.route("/stats", methods=['GET'], strict_slashes=False)
+def stats():
+    """
+    stats of all objs route
+    :return: json of all objs
+    """
+    response_data = {
+        "amenities": storage.count("Amenity"),
+        "cities": storage.count("City"),
+        "places": storage.count("Place"),
+        "reviews": storage.count("Review"),
+        "states": storage.count("State"),
+        "users": storage.count("User"),
+    }
+
+    resp = jsonify(response_data)
+    resp.status_code = 200
+
+    return resp
