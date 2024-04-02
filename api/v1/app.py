@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Initialize a flask application in the file and run"""
 
 from flask import Flask
@@ -14,8 +15,8 @@ def close_app_storage():
     """Closes the storage session when app is being torn down"""
     storage.close()
 
+
 if __name__ == "__main__":
-    host  = environ.get("HBNB_API_HOST", "0.0.0.0")
+    host = environ.get("HBNB_API_HOST", "0.0.0.0")
     port = environ.get("HBNB_API_PORT", 5000)
-    
     app.run(host=host, port=port, threaded=True)
