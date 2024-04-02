@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-app
+Here application initialization begins
 """
 
 from flask import Flask, jsonify
