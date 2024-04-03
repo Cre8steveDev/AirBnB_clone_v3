@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-index.py file
-"""
+"""Index.py to serve as views for the app yaaaah"""
 
 from flask import jsonify
 from api.v1.views import app_views

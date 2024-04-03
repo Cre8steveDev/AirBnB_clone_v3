@@ -6,6 +6,7 @@ from flask_cors import CORS
 from os import getenv
 
 from api.v1.views import app_views
+
 from models import storage
 
 
@@ -36,4 +37,4 @@ def handle_404(exception):
 
 
 if __name__ == "__main__":
-    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"))
+    app.run(getenv("HBNB_API_HOST", "0.0.0.0"), getenv("HBNB_API_PORT") or 5000)
