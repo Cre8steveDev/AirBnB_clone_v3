@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-index
-"""
+"""Index.py to serve as views for the app yaaaah"""
 
 from flask import jsonify
 from api.v1.views import app_views
@@ -15,11 +13,11 @@ def status():
     status route
     :return: response with json
     """
-    data = {
+    response_data = {
         "status": "OK"
     }
 
-    resp = jsonify(data)
+    resp = jsonify(response_data)
     resp.status_code = 200
 
     return resp
@@ -31,7 +29,7 @@ def stats():
     stats of all objs route
     :return: json of all objs
     """
-    data = {
+    response_data = {
         "amenities": storage.count("Amenity"),
         "cities": storage.count("City"),
         "places": storage.count("Place"),
@@ -40,7 +38,7 @@ def stats():
         "users": storage.count("User"),
     }
 
-    resp = jsonify(data)
+    resp = jsonify(response_data)
     resp.status_code = 200
 
     return resp

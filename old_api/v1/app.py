@@ -1,37 +1,31 @@
 #!/usr/bin/python3
-"""
-app
-"""
+"""Here application initialization begins: Create an app instance"""
 
 from flask import Flask, jsonify
 from flask_cors import CORS
 from os import getenv
 
 from api.v1.views import app_views
+
 from models import storage
 
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
-
 app.register_blueprint(app_views)
+
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
 def teardown(exception):
-    """
-    teardown function
-    """
+    """Function that's run after each request is handled"""
     storage.close()
 
 
 @app.errorhandler(404)
 def handle_404(exception):
-    """
-    handles 404 error
-    :return: returns 404 json
-    """
+    """Handles the 404 Exception when the app encounters a 404"""
     data = {
         "error": "Not found"
     }
@@ -39,7 +33,8 @@ def handle_404(exception):
     resp = jsonify(data)
     resp.status_code = 404
 
-    return(resp)
+    return resp
+
 
 if __name__ == "__main__":
-    app.run(getenv("HBNB_API_HOST"), getenv("HBNB_API_PORT"))
+    app.run(getenv("HBNB_API_HOST", "0.0.0.0"), getenv("HBNB_API_PORT") or 5000)
